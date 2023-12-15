@@ -37,8 +37,8 @@ async function getAccessToken(authorizationCode) {
     return tokenData.access_token;
 }
 
-const client_id = '1380b20062c1497ca58a2877d52e5200';
-const client_secret = '2bea6f5942bd40dd8f8ddca10c2b7ecc';
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
 const redirect_uri = 'http://127.0.0.1:5000/playlists/';
 
 let accessToken;
