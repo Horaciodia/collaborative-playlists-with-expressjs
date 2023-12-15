@@ -1,0 +1,65 @@
+:root{
+    --button-width: 25vw;
+}
+
+.register-button{
+    outline: none;
+    border: none;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    min-width: var(--button-width);
+    color: white;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    width: fit-content;
+}
+
+
+.introduction{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.introduction div{
+    width:45%;
+}
+
+.right{
+    position: relative;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-button:first-child{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+h1{
+    font-size: 29.75px;
+}
+
+@media screen and (max-width: 800px){
+    .introduction div{
+        width: fit-content;
+    }
+
+    h1{
+        width: min-content;
+    }
+
+    .register-button{
+        width: 100%;
+    }
+
+    a{
+        width: auto;
+    }
+}

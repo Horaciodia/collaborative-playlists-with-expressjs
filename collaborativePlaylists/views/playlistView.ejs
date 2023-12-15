@@ -1,0 +1,83 @@
+<div class="informationContainer">
+    <div class="introduction">
+        <h1><%= playlist.name %></h1>
+        <p><%= playlist.description %></p>
+    
+        <h3>Created by <%= creator.username %></h3>
+        <% if (playlist.collaborators.length <= 0) { %>
+            <h3>No collaborators</h3>
+        <% } else { %>
+            <h3>Collaborators: <%= collaborators %></h3>
+        <% } %>
+
+        <% if (admin) { %> 
+            <h3>PIN: <%= playlist.pin %></h3>
+        <% } %>
+    </div>
+
+    <% if (allowed) { %> 
+        <div class="trackList">
+            <h1>Tracks</h1>
+            <ul>
+                <% for (let i = 0; i < playlist.tracks.length; i++) { %>
+                    <li data-trackAudio="<%= playlist.tracks[i].preview %>" data-bigCover='<%= playlist.tracks[i].bigCover %>' class="song">
+                        <div class="infoContainer">
+                            <div class="playDiv">
+                                <img src="<%= playlist.tracks[i].albumCover %>" class="cover">
+                                <div class="overlay"></div>
+                            </div>
+                            <div>
+                                <p class="songName"><%= playlist.tracks[i].name %></p>
+                                <p class="artistName"><%= playlist.tracks[i].artist %></p>
+                            </div>
+                        </div>
+            
+                        <button onclick="deleteTrack('<%= playlist._id %>', '<%= playlist.tracks[i]._id %>')">
+                            <img src="/images/x.png" alt="Delete">
+                        </button>
+                    </li>
+                <% } %> 
+            </ul>
+            <div class="showButton">
+                <button class="displaySongs">
+                    <img src="/images/up.png" alt="Don't show" class="showImage">
+                </button>
+            </div>
+        </div>
+    
+        <div class="addTracks">
+            <h1>Add tracks</h1>
+            <input type="text" name="trackName" id="trackSearcher" oninput="spotifySearch()" placeholder="Search for a song...">
+            <ul id="songs"></div>
+        </div>
+        
+        <div class="musicPlayer">
+            <div class="nothingPlaying"></div>
+            <img alt="" class="currentlyPlaying" src="">
+            <p class="notPlaying">Not playing anything</p>
+            <div class="currentInfo">
+                <p class="songName"></p>
+                <p class="artistName"></p>
+                <button class="pause">
+                    <img src="/images/pause.png" alt="Pause music" id="playerImage">
+                </button>
+            </div>
+            <audio id="audioPlayer" controls></audio>
+        </div>
+    <% } else { %>
+        <div class="notMember">
+            <h1>Looks like you're not a collaborator in this playlist</h1>
+            <p>But you can join it if you enter its PIN</p>
+
+            <form action="/playlists/join/<%= playlist._id %>" method="post">
+                <input type="text" name="pin" id="pin" placeholder="Enter the PIN">
+                <input type="submit" value="Join playlist">
+            </form>
+        </div>
+    <% } %>
+
+
+<link rel="stylesheet" href="playlistView.css">
+<script src="/scripts/deleteSong.js"></script>
+<script src="/scripts/addSongs.js"></script>
+<script src="/scripts/playAudio.js"></script>

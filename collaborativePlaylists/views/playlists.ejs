@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="title">
+        My Current Playlists
+    </h1>
+
+    <ol>
+        <% for (let i = 0; i < Array.from(playlists).length; i++) { %>
+            <li class="playlistItem" id="<%= playlists[i]._id %>">
+                <div class="link">
+                    <a href="<%= playlists[i]._id %>"><%= playlists[i].name %></a>
+                </div>
+
+                <div class="delete">
+                    <button class="removerButton">
+                        <img src="/images/x.png" alt="Delete playlist">
+                    </button>
+                </div>
+            </li>
+        <% } %>
+    </ol>
+
+    
+    <a href="/playlists/new">
+        <button class="newPlaylist">
+            Create new playlist
+        </button>
+    </a>
+</div>
+
+<script src="/scripts/resizeElements.js"></script>
+<script src="scripts/removePlaylists.js"></script>
+<link rel="stylesheet" href="playlists.css">
